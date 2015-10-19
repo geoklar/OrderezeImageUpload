@@ -16,11 +16,12 @@ namespace AzureUploadStoreDelete
         StorageCredentials sc;
         CloudStorageAccount storageAccount;
 
-        private string connectionString = "Data Source=jowbfvmk9d.database.windows.net;Initial Catalog=imagedatabase;Persist Security Info=True;User ID=geoklar;Password=Ordereze1";
+        private string connectionString = Properties.Settings.Default.DatabaseConnectionString;
+        private string databaseImagesTable = Properties.Settings.Default.DatabaseImagesTable;
 
         public ImageMethods()
         {
-            sc = new StorageCredentials("geoklar", "Pi+w82PXiTUQj05ejAf4HstsnyNVU6PlLQdKlyNoc48c5V7+tlJpBz61V+PfipbqJ3izCyOZRFt9T8m3nVMl5Q==");
+            sc = new StorageCredentials(Properties.Settings.Default.StorageUsername, Properties.Settings.Default.StorageAccessKey);
             storageAccount = new CloudStorageAccount(sc, false);
         }
 
@@ -29,7 +30,7 @@ namespace AzureUploadStoreDelete
             try
             {
                 CloudBlobClient blobclient = storageAccount.CreateCloudBlobClient();
-                CloudBlobContainer container = blobclient.GetContainerReference("images");
+                CloudBlobContainer container = blobclient.GetContainerReference(Properties.Settings.Default.StorageContainer);
                 CloudBlockBlob blockblob = container.GetBlockBlobReference(name);
                 using (var stream = new System.IO.MemoryStream(fu.FileBytes, writable: false))
                 {
@@ -44,7 +45,7 @@ namespace AzureUploadStoreDelete
             try
             {
                 CloudBlobClient blobclient = storageAccount.CreateCloudBlobClient();
-                CloudBlobContainer container = blobclient.GetContainerReference("images");
+                CloudBlobContainer container = blobclient.GetContainerReference(Properties.Settings.Default.StorageContainer);
                 CloudBlockBlob blockblob = container.GetBlockBlobReference(name);
                 blockblob.Delete();
             }
@@ -60,7 +61,7 @@ namespace AzureUploadStoreDelete
                 {
                     try
                     {
-                        SqlCommand cmd = new SqlCommand("INSERT INTO dbo.images (Name, Description, ImagePath) VALUES (@Name, @Description, @ImagePath)");
+                        SqlCommand cmd = new SqlCommand("INSERT INTO " + databaseImagesTable + " (Name, Description, ImagePath) VALUES (@Name, @Description, @ImagePath)");
                         //cmd.CommandType = CommandType.Text;
                         cmd.Connection = connection;
                         cmd.Parameters.AddWithValue("@Name", image.Name);
@@ -91,7 +92,7 @@ namespace AzureUploadStoreDelete
                 {
                     try
                     {
-                        SqlCommand cmd = new SqlCommand("Select Id, Name, Description, ImagePath From images");
+                        SqlCommand cmd = new SqlCommand("Select Id, Name, Description, ImagePath From " + databaseImagesTable);
                         //cmd.CommandType = CommandType.Text;
                         cmd.Connection = connection;
                         connection.Open();
@@ -128,7 +129,7 @@ namespace AzureUploadStoreDelete
                 {
                     try
                     {
-                        SqlCommand cmd = new SqlCommand("DELETE FROM dbo.images WHERE Id=@Id");
+                        SqlCommand cmd = new SqlCommand("DELETE FROM " + databaseImagesTable + " WHERE Id=@Id");
                         //cmd.CommandType = CommandType.Text;
                         cmd.Connection = connection;
                         cmd.Parameters.AddWithValue("@Id", id);
