@@ -109,5 +109,23 @@ namespace AzureUploadStoreDelete
                 GridView1.DataBind();
             }
         }
+
+        protected void GridView1_RowCreated(object sender, GridViewRowEventArgs e)
+        {
+            //Adding one custome header row on the top of the GridView
+            if (e.Row.RowType == DataControlRowType.Header)
+            {
+                GridView HeaderGrid = (GridView)sender;
+                GridViewRow HeaderGridRow = new GridViewRow(0, 0, DataControlRowType.Header, DataControlRowState.Insert);
+                TableCell HeaderCell = new TableCell();
+                HeaderCell.Text = "Πίνακας Αποθηκευμένων Εικόνων";
+                HeaderCell.ColumnSpan = 5;
+                HeaderCell.BorderStyle = BorderStyle.Solid;
+                HeaderCell.BorderColor = System.Drawing.Color.White;
+                HeaderGridRow.Cells.Add(HeaderCell);
+
+                GridView1.Controls[0].Controls.AddAt(0, HeaderGridRow);
+            }
+        }
     }
 }
