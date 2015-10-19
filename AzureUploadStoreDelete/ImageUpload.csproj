@@ -97,7 +97,13 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="css\form-submit-button-light.css" />
+    <Content Include="css\formCss.css" />
+    <Content Include="css\jot.css" />
+    <Content Include="css\nova.css" />
     <Content Include="images\delete.png" />
+    <Content Include="js\jotform.forms.js" />
+    <Content Include="js\prototype.forms.js" />
     <Content Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

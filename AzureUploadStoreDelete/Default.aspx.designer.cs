@@ -31,15 +31,6 @@ namespace AzureUploadStoreDelete {
         protected global::System.Web.UI.WebControls.FileUpload FileUpload1;
         
         /// <summary>
-        /// NameLbl control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label NameLbl;
-        
-        /// <summary>
         /// NameTxt control.
         /// </summary>
         /// <remarks>
@@ -47,15 +38,6 @@ namespace AzureUploadStoreDelete {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox NameTxt;
-        
-        /// <summary>
-        /// DescriptionLbl control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label DescriptionLbl;
         
         /// <summary>
         /// DescriptionTxt control.
