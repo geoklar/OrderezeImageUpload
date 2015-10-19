@@ -232,7 +232,7 @@
 }
 /* | */
 .form-all {
-  background-image: url("http://www.jotform.com/uploads/banMedo/form_files/8.png");
+  background-image: url("../images/8.png");
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-position: center top;
@@ -301,7 +301,6 @@
 .form-all .form-submit-button,
 .form-all .form-submit-reset,
 .form-all .form-submit-print {
-  width: 150px;
   font-size: 1em;
   padding: 9px 15px;
   font-family: "Open Sans", sans-serif;
