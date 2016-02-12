@@ -1,2 +1,2 @@
 # OrderezeImageUpload
-This project use ReactJs, C#, Azure Api to upload and manage images.
+This project use ASP .NET Web Forms, C#, Azure Api to upload and manage images.
